@@ -26,8 +26,8 @@
 
 ```
 {
-  width: int,
-  height: int,
+  width: int,  - Чётное число больше 20
+  height: int,  - Чётное число больше 20
 }
 ```
 
