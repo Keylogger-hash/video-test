@@ -48,7 +48,7 @@
 {
   id: uid,
   filename: string,
-  processing: Boolean - 
+  processing: Boolean - идёт ли процесс обработки
   processingSuccess: null | true | false  - отображет успешность последней опреции над видео. Дефолтное значение null.
 }
 ```
