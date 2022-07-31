@@ -1,10 +1,19 @@
 package main
-import "github.com/gorilla/mux"
-import "net/http"
-import "os"
-import "io"
+
+import (
+	"api/v1/video/structs"
+	"io"
+	"net/http"
+	"os"
+	"github.com/google/uuid"
+	"github.com/gorilla/mux"
+	"github.com/mailru/easyjson"
+	"api/v1/video/files/repository/mongo"
+)
 
 const MAX_UPLOAD_SIZE int64=1024*1024*1024
+
+
 
 func HandleFile(rw http.ResponseWriter,r *http.Request) {
 	err := r.ParseMultipartForm(MAX_UPLOAD_SIZE)	
@@ -24,7 +33,11 @@ func HandleFile(rw http.ResponseWriter,r *http.Request) {
 	if _,err := io.Copy(dst,file); err != nil{
 		http.Error(rw,"Can't upload file", 500)
 	}
-	rw.Write([]byte("File upload success"))
+	id := uuid.New().String()
+    
+	resp := &structs.Response{Id:id}
+	rawBytes, err := easyjson.Marshal(resp)
+	rw.Write(rawBytes)
 }
 func HandleDeleteFile(rw http.ResponseWriter,r *http.Request) {
 	rw.Write([]byte("DELETE"))

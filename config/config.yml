@@ -1,0 +1,7 @@
+port: 8080
+media_folder: "media"
+
+mongo:
+  uri: "mongodb://mongodb:27017"
+  name: "video-test-service"
+  files_collection: "files"
