@@ -121,6 +121,7 @@ func main() {
 	e := echo.New()
 	db, err := sqlx.Connect("sqlite3", "db.sqlite3")
 	db.Exec(schema)
+	os.Mkdir("upload",0777)
 	var wg sync.WaitGroup
 	if err != nil {
 		e.Logger.Fatal(err)
